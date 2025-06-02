@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja Bem-Vindo(a)!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .welcome-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-container::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #6a11cb33 0%, #2575fc33 100%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .welcome-container::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #6a11cb11 0%, #2575fc11 100%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .welcome-icon {
+            font-size: 80px;
+            color: #6a11cb;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .user-email {
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            display: inline-block;
+            border-style: hidden;
+            background-color: initial;
+            color: black
+        }
+        
+        .welcome-message {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        
+        .token-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #e9ecef;
+            text-align: left;
+            position: relative;
+        }
+        
+        .token-info h2 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .token-info h2 i {
+            color: #6a11cb;
+        }
+        
+        .token-details {
+            margin-top: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .detail-value {
+            color: #6a11cb;
+            font-weight: 600;
+            border: none;
+            max-width: 70%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+        
+        .expiration-warning {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #fff8e6;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #f8f9fa;
+            color: #495057;
+            border: 1px solid #e9ecef;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .token-value {
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #495057;
+            background-color: #f1f3f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .welcome-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .token-info {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="welcome-content">
+            <div class="welcome-icon">
+                <i class="fas fa-hand-wave"></i>
+            </div>
+            
+            <h1>Seja Bem-Vindo(a)!</h1>
+            
+            <div class="welcome-message">
+                <p>Estamos felizes em tê-lo(a) conosco!</p>
+                <input class="user-email" id="userEmail" disabled/>
+            </div>
+            
+            <div class="token-info">
+                <h2><i class="fas fa-key"></i> Informações de Autenticação</h2>
+                
+                <div class="token-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Expira em:</span>
+                        <input class="detail-value" id="expirationDate" />
+                    </div>
+                </div>
+                
+                <div class="expiration-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Seu token de acesso expirará automaticamente na data acima</span>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="continueBtn">
+                    <i class="fas fa-rocket"></i> Continuar
+                </button>
+                <button class="btn btn-secondary" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const userData = JSON.parse(localStorage.getItem('dataUser'));
+
+            if (userData) {
+                document.getElementById('userEmail').value = userData.email;
+                
+                const expirationDate = new Date(userData.dataExpiracao);
+                const formattedDate = expirationDate.toLocaleString("br")
+                document.getElementById('expirationDate').value = formattedDate;
+                
+            } else {
+                alert('Usuário não autenticado. Redirecionando para login...');
+                window.location.href = 'index.html';
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('dataUser');
+            alert('Você foi desconectado com sucesso!');
+            window.location.href = 'index.html';
+        });
+
+    </script>
+</body>
+</html>
